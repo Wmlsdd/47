@@ -1,0 +1,194 @@
+; =============================
+; 星際回聲：旅途之外 start.txt
+; =============================
+
+; 開場 BGM：Space Intro（假設你放 space_intro.mp3）
+bgm:space_intro.mp3;
+
+; 顯示太空背景（放在 game/background）
+changeBg:starfield.jpeg;
+
+WebGAL:靜謐的宇宙一望無際，銀河像是緩慢流動的河流。
+
+WebGAL:你醒來時，發現自己躺在一艘受損的太空船內。
+
+主角:……這是哪裡？我不是應該在返回地球的途中嗎？
+
+WebGAL:艙壁冒著細微的火花，主控台發出微弱的藍光。
+
+; 背景對照（請把圖放到 game/background）
+; starfield.jepg         → 太空背景
+; cockpit.jepg           → 太空船駕駛艙
+; corridor_damaged.jepg  → 壞掉的船艙走廊
+; engine_room.jepg       → 引擎室
+; alien_signal.jepg      → 外星訊號視覺化
+; escape_pod.jepg        → 逃生艙
+; blue_nebula.jepg       → 星雲區
+; ending_repaired.jepg   → 修復成功的太空船
+; ending_unknown.jepg    → 接觸未知生命
+; ending_escape.jepg     → 成功逃生
+
+; BGM（你放什麼檔名就用什麼）
+; space_intro.mp3
+; tense_fix.mp3
+; cosmic_signal.mp3
+; escape_sequence.mp3
+
+
+; =============================
+; 開始
+; =============================
+
+changeBg:cockpit.jpeg;
+
+WebGAL:艙內光源暗淡，儀表板顯示多項系統離線。
+
+主角:主控 AI……還能動嗎？
+
+bgm:電流.mp3;
+
+AI:……啟動中……核心系統損壞 32%。需使用者下達指令。
+
+主角:至少你還活著。現在的狀況如何？
+
+AI:偵測到三項任務可執行：  
+AI:1. 修復主引擎  
+AI:2. 調查外部不明訊號  
+AI:3. 啟動逃生艙系統
+
+; === 第一個選擇 ===
+choose:修復主引擎:route_fix|調查不明訊號:route_signal|啟動逃生艙:route_escape;
+
+
+; =============================
+; 【路線 1：修復主引擎】 
+; =============================
+
+label:route_fix;
+
+bgm:tense_fix.mp3;
+
+changeBg:corridor_damaged.jpeg;
+
+WebGAL:你踏入損壞的走廊。火花從天花板落下，照亮前方的引擎室門口。
+
+bgm:震動.mp3;
+
+主角:整艙像快撐不住了……快點修理比較好。
+
+changeBg:engine_room.jpeg;
+
+WebGAL:引擎室滿是燒焦痕跡，但核心模組似乎仍殘留能量。
+
+主角:只要更換能量導管，應該能啟動。
+
+bgm:機械.mp3;
+
+WebGAL:在震動的艙體中，你冒著危險完成最後的校正。
+
+AI:主引擎啟動成功。航向設定：返回地球。
+
+changeBg:ending_repaired.jpeg;
+
+WebGAL:太空船在星雲間滑過，重新恢復穩定。
+
+WebGAL:【Repaired End：歸途重啟】  
+WebGAL:你成功修復飛船，踏上回家的路。
+
+end;
+
+
+
+; =============================
+; 【路線 2：調查外星訊號】
+; =============================
+
+label:route_signal;
+
+bgm:cosmic_signal.mp3;
+
+changeBg:starfield.jpeg;
+
+WebGAL:你鎖定不明訊號的來源，航向一處未知星域。
+
+AI:訊號正在加強……形式未知，疑似智能生命。
+
+changeBg:alien_signal.jpeg;
+
+bgm:尖銳.mp3;
+
+WebGAL:螢幕上出現不規則圖形，像是在嘗試模仿語言。
+
+主角:這……是在跟我對話？
+
+AI:分析中……語言模型不足，無法解碼。請使用者決定：  
+AI:是否回應訊號？
+
+choose:發送回應:signal_contact|保持靜默:signal_end;
+
+
+; === 外星回應線 ===
+label:signal_contact;
+
+WebGAL:你傳出一段簡短的脈衝訊號作為回應。
+
+bgm:電流.mp3;
+
+WebGAL:下一秒，整個視窗亮了起來。
+
+changeBg:blue_nebula.jpeg;
+
+WebGAL:一道柔和光芒包覆太空船，你感覺自己不再孤獨。
+
+WebGAL:【Signal End：邂逅未知】  
+WebGAL:你選擇不逃避，而是伸手觸向宇宙更深處。
+
+end;
+
+
+; === 靜默結束線 ===
+label:signal_end;
+
+WebGAL:你決定不與未知來源接觸。
+
+WebGAL:訊號逐漸消散，船艙重新恢復寂靜。
+
+changeBg:cockpit.jpeg;
+
+WebGAL:你回到駕駛艙，心中卻浮現一絲錯過什麼的感覺。
+
+WebGAL:【Neutral End：星空靜默】;
+
+end;
+
+
+
+; =============================
+; 【路線 3：啟動逃生艙】
+; =============================
+
+label:route_escape;
+
+bgm:escape_sequence.mp3;
+
+changeBg:escape_pod.jpeg;
+AI:逃生艙系統啟動。剩餘物資：有限。  
+AI:一旦發射，將無法返回主艦。
+
+主角:至少……能活下去吧。
+
+bgm:啟動.mp3;
+
+WebGAL:倒數開始。
+
+WebGAL:3……2……1……
+
+changeBg:ending_escape.jpeg;
+
+WebGAL:你與主艙斷開連結，坐在狹小空間內，聽著逃生艙滑入星海。
+
+WebGAL:【Escape End：孤航者】  
+WebGAL:或許你會抵達某顆星球……或許永遠漂流。
+
+end;
+
